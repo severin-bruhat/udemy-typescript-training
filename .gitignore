@@ -3,4 +3,5 @@
 
 # node
 maps/node_modules/
-
+maps/.cache/
+dist/
