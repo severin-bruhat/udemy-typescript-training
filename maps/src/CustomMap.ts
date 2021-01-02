@@ -1,11 +1,12 @@
 // Instructions to every other class
 //  on how they can be an argument to 'addMarker'
-interface Mappable {
+export interface Mappable {
     location: {
         lat: number;
         lng: number;
     };
     markerContent(): string;
+    color: string;
 }
 
 export class CustomMap {
@@ -22,12 +23,18 @@ export class CustomMap {
     }
 
     addMarker(mappable: Mappable): void {
+        let url = "https://maps.google.com/mapfiles/ms/icons/";
+        url += mappable.color + "-dot.png";
+
         const marker = new google.maps.Marker({
             map: this.googleMap,
             position: {
                 lat: mappable.location.lat,
                 lng: mappable.location.lng
-            }
+            },
+            icon: {
+                url: url
+              }
         });
 
         marker.addListener('click', () => {
