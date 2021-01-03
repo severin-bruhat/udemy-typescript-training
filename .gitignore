@@ -6,4 +6,4 @@
 maps/.cache/
 dist/
 
-sort/build/
+*/build/
