@@ -1,11 +1,10 @@
 # macOS
 .DS_Store
 
-# node
 */node_modules/
-maps/.cache/
-dist/
-
 */build/
+*/dist/
+*/.cache/
 
+dist/
 report.html
