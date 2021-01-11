@@ -7,3 +7,8 @@ user.save();
 
 const newUser = new User({  name: 'Amelie', age: 12});
 newUser.save();
+newUser.events.on('change', () => {
+    console.log('CHANGE');
+});
+
+newUser.events.trigger('change');
