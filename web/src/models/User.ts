@@ -10,6 +10,8 @@ type Callback  = () => void;
 
 export class User {
     events: { [key: string]: Callback[] } = {};
+    private baseUrl = 'http://localhost:3000/users';
+
     constructor(private data: UserProps) {}
 
     get(propName: string): (string | number) {
@@ -39,9 +41,18 @@ export class User {
     }
 
     fetch(): void{
-        axios.get(`http://localhost:3000/users/${this.get('id')}`)
+        axios.get(`${this.baseUrl}/${this.get('id')}`)
         .then((response: AxiosResponse): void => {
             this.set(response.data);
         })
+    }
+
+    save(): void {
+        const id = this.get('id');
+        if (id) {
+            axios.put(`${this.baseUrl}/${id}`, this.data);
+        } else {
+            axios.post(this.baseUrl, this.data);
+        }
     }
 }
